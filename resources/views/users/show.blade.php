@@ -41,7 +41,7 @@
                             @include('users.files.notes.filenotes')
                         <hr>
                         <div class="d-flex justify-content-center">
-                            <form action="#" method="post" class="p-1">
+                            <form action="{{route('file.edit', $show_file_details->id)}}" class="p-1">
                                 @csrf
                                 <button type="submit" class="btn btn-dark btn-sm">Edit Record</button>
                             </form>

@@ -51,8 +51,36 @@ class fileController extends Controller
         return $image_name;
     }
 
+    public function edit($id){
+        $files = $this->file->findOrFail($id);
+        return view('users.files.edit')->with('files' ,$files);
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'name_of_file'                  => 'required|min:1|max:100',
+            'memo_number'                   => 'required|min:1|numeric',
+            'description_of_the_file'       => 'required|min:1|max:1000',
+            'received_by'                   => 'required|min:1|max:50',
+            'file_status'                   => 'required',
+            'received_from'                 => 'required|min:1|max:50',
+        ]);
+
+        $files = $this->file->findOrFail($id);
+        $files->recorded_by = Auth::user()->name;
+        $files->name_of_file = $request->name_of_file;
+        $files->memo_number = $request->memo_number;
+        $files->description = $request->description_of_the_file;
+        $files->received_by = $request->received_by;
+        $files->status = $request->file_status;
+        $files->received_from = $request->received_from;
+        $files->save();
+
+        return redirect()->route('index');
+    }
+
     public function destroy($id){
         $this->file->destroy($id);
-        return redirect()->back();
+        return redirect()->route('index');
     }
 }
