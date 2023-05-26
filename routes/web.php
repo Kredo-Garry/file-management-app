@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/addfile', [fileController::class, 'addfile'])->name('addfile');
     Route::post('/file/store', [fileController::class, 'store'])->name('file.store');
+    Route::delete('/file/{id}/destroy', [fileController::class, 'destroy'])->name('file.destroy');
 
     //Notes
     Route::post('/notes/{file_id}/store', [NoteController::class, 'store'])->name('note.store');

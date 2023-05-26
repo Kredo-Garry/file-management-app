@@ -45,8 +45,9 @@
                                 @csrf
                                 <button type="submit" class="btn btn-dark btn-sm">Edit Record</button>
                             </form>
-                            <form action="#" method="post" class="p-1">
+                            <form action="{{route('file.destroy', $show_file_details->id)}}" method="post" class="p-1">
                                 @csrf
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete Record</button>
                             </form>
                         </div>

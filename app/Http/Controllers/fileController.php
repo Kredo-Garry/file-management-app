@@ -50,4 +50,9 @@ class fileController extends Controller
 
         return $image_name;
     }
+
+    public function destroy($id){
+        $this->file->destroy($id);
+        return redirect()->back();
+    }
 }
